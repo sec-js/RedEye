@@ -3,8 +3,7 @@ FROM node:18-bullseye as redeye-builder
 WORKDIR /app
 COPY ./ ./
 ENV CYPRESS_INSTALL_BINARY=0
-RUN npm install -g pkg
-RUN yarn add rimraf
+RUN npm install -g pkg rimraf
 RUN yarn install --immutable --inline-builds
 RUN yarn moon run server:build client:build
 RUN yarn node scripts/create-release.mjs
